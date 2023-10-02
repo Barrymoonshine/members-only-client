@@ -1,0 +1,31 @@
+.log-in-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e4e7;
+  padding: 20px;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.submit-button {
+  background-color: #f1b448;
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  color: #fafafa;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+  background-color: #f3aa2d;
+}
+
+.close-button {
+  padding: 10px;
+  color: #ef4444;
+}
+
+.close-button:hover {
+  cursor: pointer;
+}

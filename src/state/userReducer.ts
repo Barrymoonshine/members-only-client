@@ -1,7 +1,7 @@
 import ACTIONS from '../utils/ACTIONS';
 
 export const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   isMember: false,
   isAdmin: false,
 };

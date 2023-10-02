@@ -18,16 +18,19 @@ const Header = () => {
         <h3>ClubLand</h3>
       </NavLink>
       <nav>
-        <button onClick={() => toggleLogInVisibility()}>Log in</button>
+        <button
+          className='log-in-button'
+          onClick={() => toggleLogInVisibility()}
+        >
+          Log in
+        </button>
         {isLogInVisible && (
           <LogIn toggleLogInVisibility={toggleLogInVisibility} />
         )}
         <ul>
-          <li></li>
           {isLoggedIn && <div>Hello Logged In</div>}
           {isAdmin && <div>Hello isAdmin In</div>}
           {isMember && <div>Hello isMember In</div>}
-          <li>Cart TBC</li>
         </ul>
       </nav>
     </header>
