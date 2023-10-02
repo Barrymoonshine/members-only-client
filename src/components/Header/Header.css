@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px 0px 20px;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+header h3 {
+  font-size: 30px;
+}
+
+header a {
+  color: #2652cc;
+}
+
+header a,
+nav a {
+  text-decoration: none;
+}
+
+nav a {
+  background-color: #2652cc;
+  color: #ffffff;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+}
+
+nav {
+  align-self: center;
+}
+
+nav ul {
+  display: flex;
+  vertical-align: middle;
+  gap: 30px;
+}
