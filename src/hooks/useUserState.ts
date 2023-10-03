@@ -2,15 +2,18 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 
 const useUserState = () => {
-  const { state } = useContext(UserContext);
+  const userContext = useContext(UserContext);
 
-  return {
-    isLoggedIn: state.isLoggedIn,
-    isMember: state.isMember,
-    isAdmin: state.isAdmin,
-    isLoading: state.isLoading,
-    logInError: state.logInError,
-  };
+  // Ensure userContext is available prior to returning state
+  if (userContext !== undefined) {
+    return {
+      isLoggedIn: userContext.state.isLoggedIn,
+      isMember: userContext.state.isMember,
+      isAdmin: userContext.state.isAdmin,
+      isLoading: userContext.state.isLoading,
+      logInError: userContext.state.logInError,
+    };
+  }
 };
 
 export default useUserState;
