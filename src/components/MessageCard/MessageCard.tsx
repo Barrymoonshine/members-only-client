@@ -13,10 +13,10 @@ const MessageCard = ({ username, message, createdAt }: MessageCardProps) => {
   // if member
 
   return (
-    <div>
-      {username}
-      {message}
-      {createdAt}
+    <div className='message-card-container'>
+      <span className='username'>{username}</span>
+      <span className='message'>{message}</span>
+      <span className='created-at'>{createdAt.slice(0, 10)}</span>
     </div>
   );
 };
