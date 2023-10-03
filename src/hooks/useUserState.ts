@@ -8,6 +8,8 @@ const useUserState = () => {
     isLoggedIn: state.isLoggedIn,
     isMember: state.isMember,
     isAdmin: state.isAdmin,
+    isLoading: state.isLoading,
+    logInError: state.logInError,
   };
 };
 

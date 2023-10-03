@@ -9,14 +9,14 @@
   border-radius: 10px;
 }
 
-.submit-button {
+.log-in-button {
   background-color: #f1b448;
   padding: 10px 15px 10px 15px;
   border-radius: 10px;
   color: #fafafa;
 }
 
-.submit-button:hover {
+.log-in-button:hover {
   cursor: pointer;
   background-color: #f3aa2d;
 }

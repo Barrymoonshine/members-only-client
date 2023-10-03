@@ -1,32 +1,36 @@
 import './LogIn.css';
-import { useState } from 'react';
+import useUserDispatch from '../../hooks/useUserDispatch';
+import useUserState from '../../hooks/useUserState';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 type LogInProps = {
   toggleLogInVisibility: () => void;
 };
 
-type InputFields = {
-  usernameInput: string;
-  passwordInput: string;
+export type LogInFormTypes = {
+  username: string;
+  password: string;
 };
 
 const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
-  const [inputField, setInputField] = useState({
-    usernameInput: '',
-    passwordInput: '',
-  });
+  const { handleLogIn } = useUserDispatch();
+  const { logInError, isLoading } = useUserState();
 
-  const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setInputField((prevState: InputFields) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<LogInFormTypes>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<LogInFormTypes> = async (formData) => {
+    console.log('formData', formData);
+    const success = await handleLogIn(formData);
     console.log('form submitted');
+    if (success) {
+      reset();
+      toggleLogInVisibility();
+    }
   };
 
   return (
@@ -42,26 +46,32 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
       <button onClick={() => toggleLogInVisibility()} className='close-button'>
         &#10006;
       </button>
-      <form onSubmit={handleSubmit}>
-        <label>Username:</label>
-        <input
-          type='text'
-          name='usernameInput'
-          value={inputField.usernameInput}
-          onChange={(e) => handleInputs(e)}
-          minLength={1}
-          required
-        />
-        <label>Password</label>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor='Username'> Username:</label>
+        <input {...register('username', { required: true })} />
+        {errors.username && (
+          <span className='log-in-error'>This field is required</span>
+        )}
+        <label htmlFor='password'> Password:</label>
         <input
           type='password'
-          name='passwordInput'
-          value={inputField.passwordInput}
-          onChange={(e) => handleInputs(e)}
-          minLength={8}
-          required
+          {...register('password', {
+            required: true,
+            pattern:
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$/,
+          })}
         />
-        <button className='submit-button'>Submit</button>
+        {errors.password && (
+          <span className='log-in-error'>
+            Please enter a password that is between 8 and 20 characters long and
+            contains at least one number, one capital letter and one special
+            symbol(!@#$%^&*=+-_)
+          </span>
+        )}
+        {logInError && <span>{logInError}</span>}
+        <button disabled={isLoading} className='log-in-button'>
+          Log In
+        </button>
       </form>
     </div>
   );
