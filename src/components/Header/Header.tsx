@@ -17,21 +17,32 @@ const Header = () => {
       <NavLink to='/' style={{ textDecoration: 'none' }}>
         <h3>ClubLand</h3>
       </NavLink>
+
       <nav>
-        <button
-          className='log-in-button'
-          onClick={() => toggleLogInVisibility()}
-        >
-          Log in
-        </button>
+        {!isLoggedIn && (
+          <button
+            className='log-in-button'
+            onClick={() => toggleLogInVisibility()}
+          >
+            Log In
+          </button>
+        )}
         {isLogInVisible && (
           <LogIn toggleLogInVisibility={toggleLogInVisibility} />
         )}
-        <ul>
-          {isLoggedIn && <div>Hello Logged In</div>}
-          {isAdmin && <div>Hello isAdmin In</div>}
-          {isMember && <div>Hello isMember In</div>}
-        </ul>
+        {isLoggedIn && isAdmin && !isMember && (
+          <ul>
+            <li>Join Us</li>
+            <li>Create</li>
+            <li>My Account</li>
+          </ul>
+        )}
+        {isLoggedIn && isAdmin && isMember && (
+          <ul>
+            <li>Join Us</li>
+            <li>My Account</li>
+          </ul>
+        )}
       </nav>
     </header>
   );
