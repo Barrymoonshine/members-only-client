@@ -1,12 +1,5 @@
 import ACTIONS from '../utils/ACTIONS';
-
-export type UserState = {
-  isLoggedIn: boolean;
-  isMember: boolean;
-  isAdmin: boolean;
-  isLoading: boolean;
-  logInError: string[] | { message: string; code: number } | null;
-};
+import { UserState, UserAction } from './reducerTypes';
 
 export const initialState: UserState = {
   isLoggedIn: false,
@@ -16,9 +9,8 @@ export const initialState: UserState = {
   logInError: null,
 };
 
-const userReducer = (state, action) => {
-  const { type, payload } = action;
-  switch (type) {
+const userReducer = (state: UserState, action: UserAction) => {
+  switch (action.type) {
     case ACTIONS.TOGGLE_LOG_IN:
       return {
         ...state,
@@ -37,7 +29,7 @@ const userReducer = (state, action) => {
     case ACTIONS.SAVE_LOG_IN_ERROR:
       return {
         ...state,
-        logInError: payload.error,
+        logInError: action.payload.error,
       };
     case ACTIONS.REMOVE_LOG_IN_ERROR:
       return {

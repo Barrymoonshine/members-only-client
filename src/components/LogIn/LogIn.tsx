@@ -24,9 +24,7 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
   } = useForm<LogInFormTypes>();
 
   const onSubmit: SubmitHandler<LogInFormTypes> = async (formData) => {
-    console.log('formData', formData);
     const success = await handleLogIn(formData);
-    console.log('form submitted');
     if (success) {
       reset();
       toggleLogInVisibility();
