@@ -6,7 +6,12 @@ import { LogInFormTypes } from '../components/LogIn/LogIn';
 type LogInError = string[] | { message: string; code: number };
 
 const useUserDispatch = () => {
-  const { dispatch } = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  // Ensure userContext is available prior to returning dispatch functions
+  if (!userContext) {
+    throw new Error('useUserDispatch must be used within UserProvider');
+  }
+  const { dispatch } = userContext;
 
   const toggleLoading = () => {
     dispatch({
