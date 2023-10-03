@@ -8,6 +8,7 @@ const ACTIONS = {
   SAVE_MESSAGES: 'save-all-messages',
   SAVE_MESSAGES_ERROR: 'save-message-error',
   REMOVE_MESSAGES_ERROR: 'remove-message-error',
+  TOGGLE_MESSAGES_LOADING: 'toggle-messages-loading-status',
 };
 
 export default ACTIONS;

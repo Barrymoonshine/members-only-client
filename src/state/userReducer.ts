@@ -9,6 +9,7 @@ export const initialState: UserState = {
   logInError: null,
   messages: null,
   messagesError: null,
+  messagesLoading: false,
 };
 
 const userReducer = (state: UserState, action: UserAction) => {
@@ -57,6 +58,11 @@ const userReducer = (state: UserState, action: UserAction) => {
       return {
         ...state,
         messagesError: null,
+      };
+    case ACTIONS.TOGGLE_MESSAGES_LOADING:
+      return {
+        ...state,
+        messagesLoading: !state.messagesLoading,
       };
     default:
       return state;

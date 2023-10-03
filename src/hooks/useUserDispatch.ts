@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import ACTIONS from '../utils/ACTIONS';
 import { LogInFormTypes } from '../components/LogIn/LogIn';
-import { ResError, Messages } from '../state/reducerTypes';
+import { ResError, Message } from '../state/reducerTypes';
 
 const useUserDispatch = () => {
   const userContext = useContext(UserContext);
@@ -79,7 +79,7 @@ const useUserDispatch = () => {
     }
   };
 
-  const saveMessages = (messages: Messages[]) => {
+  const saveMessages = (messages: Message[]) => {
     dispatch({
       type: ACTIONS.SAVE_MESSAGES,
       payload: { messages },
@@ -99,10 +99,16 @@ const useUserDispatch = () => {
     });
   };
 
+  const toggleMessagesLoading = () => {
+    dispatch({
+      type: ACTIONS.TOGGLE_MESSAGES_LOADING,
+    });
+  };
+
   const getMessages = async () => {
     try {
       removeMessagesError();
-      toggleLoading();
+      toggleMessagesLoading();
       const response = await fetch(`${import.meta.env.VITE_API_URL}/message`, {
         method: 'GET',
       });
@@ -116,7 +122,7 @@ const useUserDispatch = () => {
     } catch (error) {
       saveMessagesError(error as ResError);
     } finally {
-      toggleLoading();
+      toggleMessagesLoading();
     }
   };
 

@@ -13,6 +13,9 @@ const useUserState = () => {
       isAdmin: userContext.state.isAdmin,
       isLoading: userContext.state.isLoading,
       logInError: userContext.state.logInError,
+      messages: userContext.state.messages,
+      messagesError: userContext.state.messagesError,
+      messagesLoading: userContext.state.messagesLoading,
     };
   }
 };

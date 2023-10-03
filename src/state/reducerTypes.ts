@@ -1,6 +1,6 @@
 import ACTIONS from '../utils/ACTIONS';
 
-export type Messages = {
+export type Message = {
   _id: string;
   username: string;
   message: string;
@@ -21,9 +21,10 @@ export type UserState = {
   isMember: boolean;
   isAdmin: boolean;
   isLoading: boolean;
-  logInError: Error;
-  messages: Messages | null;
-  messagesError: Error;
+  logInError: ResError;
+  messages: Message | null;
+  messagesError: ResError;
+  messagesLoading: boolean;
 };
 
 // Action types
