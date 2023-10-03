@@ -13,7 +13,7 @@ export type LogInFormTypes = {
 };
 
 const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
-  const { handleLogIn } = useUserDispatch();
+  const { handleLogIn, removeLogInError } = useUserDispatch();
   const { logInError, isLoading } = useUserState();
 
   const {
@@ -46,12 +46,16 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
       </button>
       <form className='log-in-form' onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor='Username'> Username:</label>
-        <input {...register('username', { required: true })} />
+        <input
+          onClick={() => removeLogInError()}
+          {...register('username', { required: true })}
+        />
         {errors.username && (
           <span className='log-in-error'>This field is required</span>
         )}
         <label htmlFor='password'> Password:</label>
         <input
+          onClick={() => removeLogInError()}
           type='password'
           {...register('password', {
             required: true,

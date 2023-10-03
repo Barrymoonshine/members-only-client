@@ -129,6 +129,7 @@ const useUserDispatch = () => {
   return {
     handleLogIn,
     getMessages,
+    removeLogInError,
   };
 };
 
