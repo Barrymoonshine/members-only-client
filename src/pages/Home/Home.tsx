@@ -9,11 +9,6 @@ const Home = () => {
   const { getMessages } = useUserDispatch();
   const { messagesLoading, messages, messagesError } = useUserState();
 
-  // Conditionals
-  // if logged in
-  // if admin
-  // if member
-
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
@@ -26,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <h2>Hello this is the home page..</h2>
+      <h2>Club Messages</h2>
       {messagesLoading && <span>Page is loading...</span>}
       {messagesError && (
         <span>

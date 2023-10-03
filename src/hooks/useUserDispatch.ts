@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import ACTIONS from '../utils/ACTIONS';
 import { LogInFormTypes } from '../components/LogIn/LogIn';
-import { ResError, Message } from '../state/reducerTypes';
+import { AuthError, ResError, Message } from '../state/reducerTypes';
 
 const useUserDispatch = () => {
   const userContext = useContext(UserContext);
@@ -42,7 +42,7 @@ const useUserDispatch = () => {
     });
   };
 
-  const saveLogInError = (error: ResError) => {
+  const saveLogInError = (error: AuthError) => {
     dispatch({
       type: ACTIONS.SAVE_LOG_IN_ERROR,
       payload: { error },
@@ -68,7 +68,7 @@ const useUserDispatch = () => {
         toggleLoading();
         return true;
       } else {
-        saveLogInError(data);
+        saveLogInError('Invalid username or password');
         toggleLoading();
         return false;
       }

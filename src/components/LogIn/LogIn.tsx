@@ -36,7 +36,7 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
       className='log-in-menu'
       style={{
         right: `0px`,
-        top: `100px`,
+        top: `90px`,
         width: '200px',
         position: 'fixed',
       }}
@@ -44,7 +44,7 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
       <button onClick={() => toggleLogInVisibility()} className='close-button'>
         &#10006;
       </button>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className='log-in-form' onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor='Username'> Username:</label>
         <input {...register('username', { required: true })} />
         {errors.username && (
@@ -66,9 +66,9 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
             symbol(!@#$%^&*=+-_)
           </span>
         )}
-        {logInError && <span>{logInError}</span>}
-        <button disabled={isLoading} className='log-in-button'>
-          Log In
+        {logInError && <span className='log-in-error'>{logInError}</span>}
+        <button disabled={isLoading} className='log-in-submit-button'>
+          Submit
         </button>
       </form>
     </div>

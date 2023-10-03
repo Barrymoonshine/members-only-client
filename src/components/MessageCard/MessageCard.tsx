@@ -7,6 +7,11 @@ type MessageCardProps = {
 };
 
 const MessageCard = ({ username, message, createdAt }: MessageCardProps) => {
+  // Conditionals
+  // if logged in
+  // if admin
+  // if member
+
   return (
     <div>
       {username}

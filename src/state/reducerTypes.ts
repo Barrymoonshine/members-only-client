@@ -16,12 +16,14 @@ export type ResError =
   | { message: string; code: number }
   | null;
 
+export type AuthError = string;
+
 export type UserState = {
   isLoggedIn: boolean;
   isMember: boolean;
   isAdmin: boolean;
   isLoading: boolean;
-  logInError: ResError;
+  logInError: AuthError | ResError;
   messages: Message | null;
   messagesError: ResError;
   messagesLoading: boolean;
@@ -43,7 +45,7 @@ type SetIsMemberAction = {
 type SaveLogInErrorAction = {
   type: typeof ACTIONS.SAVE_LOG_IN_ERROR;
   payload: {
-    error: string[] | { message: string; code: number } | null;
+    error: ResError;
   };
 };
 
@@ -57,10 +59,16 @@ type ToggleLoadingAction = {
 
 type SaveMessagesAction = {
   type: typeof ACTIONS.SAVE_MESSAGES;
+  payload: {
+    messages: Message[];
+  };
 };
 
 type SaveMessagesErrorAction = {
   type: typeof ACTIONS.SAVE_MESSAGES_ERROR;
+  payload: {
+    error: ResError;
+  };
 };
 
 type RemoveMessagesErrorAction = {
