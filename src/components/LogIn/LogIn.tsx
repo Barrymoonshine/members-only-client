@@ -35,10 +35,10 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
     <div
       className='log-in-menu'
       style={{
-        right: `0px`,
+        right: `5px`,
         top: `90px`,
         width: '200px',
-        position: 'fixed',
+        position: 'absolute',
       }}
     >
       <button onClick={() => toggleLogInVisibility()} className='close-button'>
