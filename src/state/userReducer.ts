@@ -7,6 +7,8 @@ export const initialState: UserState = {
   isAdmin: false,
   isLoading: false,
   logInError: null,
+  messages: null,
+  messagesError: null,
 };
 
 const userReducer = (state: UserState, action: UserAction) => {
@@ -40,6 +42,21 @@ const userReducer = (state: UserState, action: UserAction) => {
       return {
         ...state,
         isLoading: !state.isLoading,
+      };
+    case ACTIONS.SAVE_MESSAGES:
+      return {
+        ...state,
+        messages: action.payload.messages,
+      };
+    case ACTIONS.SAVE_MESSAGES_ERROR:
+      return {
+        ...state,
+        messagesError: action.payload.error,
+      };
+    case ACTIONS.REMOVE_MESSAGES_ERROR:
+      return {
+        ...state,
+        messagesError: null,
       };
     default:
       return state;

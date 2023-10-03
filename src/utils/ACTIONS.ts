@@ -5,6 +5,9 @@ const ACTIONS = {
   SAVE_LOG_IN_ERROR: 'save-log-in-error',
   REMOVE_LOG_IN_ERROR: 'remove-log-in-error',
   TOGGLE_LOADING: 'toggle-loading-status',
+  SAVE_MESSAGES: 'save-all-messages',
+  SAVE_MESSAGES_ERROR: 'save-message-error',
+  REMOVE_MESSAGES_ERROR: 'remove-message-error',
 };
 
 export default ACTIONS;

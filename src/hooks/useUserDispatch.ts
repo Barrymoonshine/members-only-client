@@ -2,8 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import ACTIONS from '../utils/ACTIONS';
 import { LogInFormTypes } from '../components/LogIn/LogIn';
-
-type LogInError = string[] | { message: string; code: number };
+import { ResError, Messages } from '../state/reducerTypes';
 
 const useUserDispatch = () => {
   const userContext = useContext(UserContext);
@@ -43,7 +42,7 @@ const useUserDispatch = () => {
     });
   };
 
-  const saveLogInError = (error: LogInError) => {
+  const saveLogInError = (error: ResError) => {
     dispatch({
       type: ACTIONS.SAVE_LOG_IN_ERROR,
       payload: { error },
@@ -74,14 +73,56 @@ const useUserDispatch = () => {
         return false;
       }
     } catch (error) {
-      saveLogInError(error as LogInError);
+      saveLogInError(error as ResError);
       toggleLoading();
       return false;
     }
   };
 
+  const saveMessages = (messages: Messages[]) => {
+    dispatch({
+      type: ACTIONS.SAVE_MESSAGES,
+      payload: { messages },
+    });
+  };
+
+  const removeMessagesError = () => {
+    dispatch({
+      type: ACTIONS.REMOVE_MESSAGES_ERROR,
+    });
+  };
+
+  const saveMessagesError = (error: ResError) => {
+    dispatch({
+      type: ACTIONS.SAVE_MESSAGES_ERROR,
+      payload: { error },
+    });
+  };
+
+  const getMessages = async () => {
+    try {
+      removeMessagesError();
+      toggleLoading();
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/message`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      if (response.ok) {
+        saveMessages(data);
+        return true;
+      } else {
+        saveMessagesError(data);
+      }
+    } catch (error) {
+      saveMessagesError(error as ResError);
+    } finally {
+      toggleLoading();
+    }
+  };
+
   return {
     handleLogIn,
+    getMessages,
   };
 };
 

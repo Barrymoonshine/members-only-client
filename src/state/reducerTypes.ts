@@ -1,11 +1,29 @@
 import ACTIONS from '../utils/ACTIONS';
 
+export type Messages = {
+  _id: string;
+  username: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+// Union type for possible error types
+export type ResError =
+  | string
+  | string[]
+  | { message: string; code: number }
+  | null;
+
 export type UserState = {
   isLoggedIn: boolean;
   isMember: boolean;
   isAdmin: boolean;
   isLoading: boolean;
-  logInError: string[] | { message: string; code: number } | null;
+  logInError: Error;
+  messages: Messages | null;
+  messagesError: Error;
 };
 
 // Action types
@@ -36,6 +54,18 @@ type ToggleLoadingAction = {
   type: typeof ACTIONS.TOGGLE_LOADING;
 };
 
+type SaveMessagesAction = {
+  type: typeof ACTIONS.SAVE_MESSAGES;
+};
+
+type SaveMessagesErrorAction = {
+  type: typeof ACTIONS.SAVE_MESSAGES_ERROR;
+};
+
+type RemoveMessagesErrorAction = {
+  type: typeof ACTIONS.REMOVE_MESSAGES_ERROR;
+};
+
 // Union type for all possible actions
 export type UserAction =
   | ToggleLogInAction
@@ -43,4 +73,7 @@ export type UserAction =
   | SetIsMemberAction
   | SaveLogInErrorAction
   | RemoveLogInErrorAction
-  | ToggleLoadingAction;
+  | ToggleLoadingAction
+  | SaveMessagesAction
+  | SaveMessagesErrorAction
+  | RemoveMessagesErrorAction;
