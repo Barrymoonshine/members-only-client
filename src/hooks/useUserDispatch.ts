@@ -182,11 +182,18 @@ const useUserDispatch = () => {
     }
   };
 
+  const handleLogOut = () => {
+    toggleLogIn();
+    saveUserID('');
+    saveUsername('');
+  };
+
   return {
     handleLogIn,
     removeLogInError,
     handleSignUp,
     handleJoinUs,
+    handleLogOut,
   };
 };
 

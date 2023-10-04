@@ -48,7 +48,15 @@ const Header = () => {
                 Create
               </NavLink>
             </li>
-            <li>My Account</li>
+            <li>
+              <NavLink
+                className='nav-links'
+                to='/my-account'
+                style={{ textDecoration: 'none' }}
+              >
+                My Account
+              </NavLink>
+            </li>
           </ul>
         )}
         {isLoggedIn && isAdmin && isMember && (
@@ -62,7 +70,15 @@ const Header = () => {
                 Create
               </NavLink>
             </li>
-            <li>My Account</li>
+            <li>
+              <NavLink
+                className='nav-links'
+                to='/my-account'
+                style={{ textDecoration: 'none' }}
+              >
+                My Account
+              </NavLink>
+            </li>
           </ul>
         )}
       </nav>
