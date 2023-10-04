@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { MessageContext } from '../context/MessageContext';
 import { MESSAGE_ACTIONS } from '../utils/ACTIONS';
-import { ResError, Message } from '../types/messageTypes';
+import { ValidatorError, ResError, Message } from '../types/messageTypes';
+import { CreateFormTypes } from '../pages/create/Create';
 
 const useMessageDispatch = () => {
   const messageContext = useContext(MessageContext);
@@ -9,7 +10,7 @@ const useMessageDispatch = () => {
   if (!messageContext) {
     throw new Error('useUserDispatch must be used within UserProvider');
   }
-  const { dispatch } = messageContext;
+  const { state, dispatch } = messageContext;
 
   const saveMessages = (messages: Message[]) => {
     dispatch({
@@ -58,8 +59,51 @@ const useMessageDispatch = () => {
     }
   };
 
+  const removeCreateError = () => {
+    dispatch({
+      type: MESSAGE_ACTIONS.REMOVE_CREATE_ERROR,
+    });
+  };
+
+  const saveCreateError = (error: ValidatorError | ResError) => {
+    dispatch({
+      type: MESSAGE_ACTIONS.REMOVE_CREATE_ERROR,
+      payload: { error },
+    });
+  };
+
+  const handleCreateMessage = async (
+    formData: CreateFormTypes,
+    username: string
+  ) => {
+    try {
+      removeCreateError();
+      toggleMessagesLoading();
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/message`, {
+        method: 'POST',
+        body: JSON.stringify({ ...formData, username }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        saveMessages(data);
+        return true;
+      } else {
+        saveCreateError(data);
+      }
+    } catch (error) {
+      saveCreateError(error as ResError);
+    } finally {
+      toggleMessagesLoading();
+    }
+  };
+
   return {
     getMessages,
+    handleCreateMessage,
   };
 };
 

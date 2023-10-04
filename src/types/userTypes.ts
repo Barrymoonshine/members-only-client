@@ -1,16 +1,9 @@
 import { USER_ACTIONS } from '../utils/ACTIONS';
-import { ResError } from './messageTypes';
-
-export type ValidatorError = {
-  type: string;
-  value: string;
-  msg: string;
-  path: string;
-  location: string;
-};
+import { ResError, ValidatorError } from './messageTypes';
 
 export type UserState = {
   isLoggedIn: boolean;
+  username: string;
   userID: string;
   isMember: boolean;
   isAdmin: boolean;

@@ -58,6 +58,13 @@ const useUserDispatch = () => {
     });
   };
 
+  const saveUsername = (username: string) => {
+    dispatch({
+      type: USER_ACTIONS.SAVE_USERNAME,
+      payload: { username },
+    });
+  };
+
   const handleLogIn = async (formData: LogInFormTypes) => {
     try {
       removeLogInError();
@@ -74,6 +81,7 @@ const useUserDispatch = () => {
         data.isAdmin && setAdminStatus();
         data.isMember && setMemberStatus();
         saveUserID(data._id);
+        saveUsername(data.username);
         toggleLogIn();
         toggleLoading();
         return true;
@@ -117,6 +125,7 @@ const useUserDispatch = () => {
       if (response.ok) {
         data.isAdmin && setAdminStatus();
         saveUserID(data._id);
+        saveUsername(data.username);
         toggleLogIn();
         toggleLoading();
         return true;

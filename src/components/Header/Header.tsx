@@ -39,13 +39,29 @@ const Header = () => {
             >
               Join Us
             </NavLink>
-            <li>Create</li>
+            <li>
+              <NavLink
+                className='nav-links'
+                to='/create'
+                style={{ textDecoration: 'none' }}
+              >
+                Create
+              </NavLink>
+            </li>
             <li>My Account</li>
           </ul>
         )}
         {isLoggedIn && isAdmin && isMember && (
           <ul>
-            <li>Create</li>
+            <li>
+              <NavLink
+                className='nav-links'
+                to='/create'
+                style={{ textDecoration: 'none' }}
+              >
+                Create
+              </NavLink>
+            </li>
             <li>My Account</li>
           </ul>
         )}

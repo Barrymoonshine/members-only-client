@@ -11,6 +11,7 @@ const useMessageState = () => {
       messages: messageContext.state.messages,
       messagesError: messageContext.state.messagesError,
       messagesLoading: messageContext.state.messagesLoading,
+      createError: messageContext.state.createError,
     };
   }
 };

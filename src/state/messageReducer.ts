@@ -5,6 +5,7 @@ export const initialState: MessageState = {
   messages: null,
   messagesError: null,
   messagesLoading: false,
+  createError: null,
 };
 
 const userReducer = (state: MessageState, action: MessageAction) => {
@@ -28,6 +29,16 @@ const userReducer = (state: MessageState, action: MessageAction) => {
       return {
         ...state,
         messagesLoading: !state.messagesLoading,
+      };
+    case MESSAGE_ACTIONS.REMOVE_CREATE_ERROR:
+      return {
+        ...state,
+        createError: null,
+      };
+    case MESSAGE_ACTIONS.SAVE_CREATE_ERROR:
+      return {
+        ...state,
+        messagesLoading: action.payload.error,
       };
     default:
       return state;

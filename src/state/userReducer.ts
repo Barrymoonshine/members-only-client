@@ -3,6 +3,7 @@ import { UserState, UserAction } from '../types/userTypes';
 
 export const initialState: UserState = {
   isLoggedIn: false,
+  username: '',
   userID: '',
   isMember: false,
   isAdmin: false,
@@ -23,6 +24,11 @@ const userReducer = (state: UserState, action: UserAction) => {
       return {
         ...state,
         userID: action.payload.id,
+      };
+    case USER_ACTIONS.SAVE_USERNAME:
+      return {
+        ...state,
+        username: action.payload.username,
       };
     case USER_ACTIONS.SET_IS_ADMIN:
       return {

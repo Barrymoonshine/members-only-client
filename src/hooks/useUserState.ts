@@ -9,6 +9,7 @@ const useUserState = () => {
   } else {
     return {
       isLoggedIn: userContext.state.isLoggedIn,
+      username: userContext.state.username,
       userID: userContext.state.userID,
       isMember: userContext.state.isMember,
       isAdmin: userContext.state.isAdmin,
