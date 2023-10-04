@@ -1,18 +1,32 @@
 import { USER_ACTIONS } from '../utils/ACTIONS';
 import { ResError } from './messageTypes';
 
+export type ValidatorError = {
+  type: string;
+  value: string;
+  msg: string;
+  path: string;
+  location: string;
+};
+
 export type UserState = {
   isLoggedIn: boolean;
+  userID: string;
   isMember: boolean;
   isAdmin: boolean;
   isLoading: boolean;
   logInError: ResError;
-  signUpError: ResError;
+  signUpError: ResError | ValidatorError[];
+  joinUsError: null | ValidatorError[] | ResError;
 };
 
 // User action types
 type ToggleLogInAction = {
   type: typeof USER_ACTIONS.TOGGLE_LOG_IN;
+};
+
+type SaveUserIAction = {
+  type: typeof USER_ACTIONS.SAVE_USER_ID;
 };
 
 type SetIsAdminAction = {
@@ -41,7 +55,7 @@ type ToggleLoadingAction = {
 type SaveSignUpErrorAction = {
   type: typeof USER_ACTIONS.SAVE_SIGN_UP_ERROR;
   payload: {
-    error: ResError;
+    error: ValidatorError[] | ResError;
   };
 };
 
@@ -49,13 +63,27 @@ type RemoveSignUpErrorAction = {
   type: typeof USER_ACTIONS.REMOVE_SIGN_UP_ERROR;
 };
 
+type SaveJoinUsErrorAction = {
+  type: typeof USER_ACTIONS.SAVE_JOIN_US_ERROR;
+  payload: {
+    error: ValidatorError[] | ResError;
+  };
+};
+
+type RemoveJoinUsErrorAction = {
+  type: typeof USER_ACTIONS.REMOVE_JOIN_US_ERROR;
+};
+
 // Union type for all possible user actions
 export type UserAction =
   | ToggleLogInAction
+  | SaveUserIAction
   | SetIsAdminAction
   | SetIsMemberAction
   | SaveLogInErrorAction
   | RemoveLogInErrorAction
   | ToggleLoadingAction
   | SaveSignUpErrorAction
-  | RemoveSignUpErrorAction;
+  | RemoveSignUpErrorAction
+  | SaveJoinUsErrorAction
+  | RemoveJoinUsErrorAction;

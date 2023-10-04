@@ -3,11 +3,13 @@ import { UserState, UserAction } from '../types/userTypes';
 
 export const initialState: UserState = {
   isLoggedIn: false,
+  userID: '',
   isMember: false,
   isAdmin: false,
   isLoading: false,
   logInError: null,
   signUpError: null,
+  joinUsError: null,
 };
 
 const userReducer = (state: UserState, action: UserAction) => {
@@ -16,6 +18,11 @@ const userReducer = (state: UserState, action: UserAction) => {
       return {
         ...state,
         isLoggedIn: !state.isLoggedIn,
+      };
+    case USER_ACTIONS.SAVE_USER_ID:
+      return {
+        ...state,
+        userID: action.payload.id,
       };
     case USER_ACTIONS.SET_IS_ADMIN:
       return {
@@ -51,6 +58,16 @@ const userReducer = (state: UserState, action: UserAction) => {
       return {
         ...state,
         signUpError: null,
+      };
+    case USER_ACTIONS.SAVE_MEMBER_ERROR:
+      return {
+        ...state,
+        joinUsError: action.payload.error,
+      };
+    case USER_ACTIONS.REMOVE_MEMBER_ERROR:
+      return {
+        ...state,
+        joinUsError: null,
       };
     default:
       return state;

@@ -30,3 +30,11 @@ nav ul {
   cursor: pointer;
   background-color: #f3aa2d;
 }
+
+.nav-links {
+  font-size: 15px;
+  background-color: #f1b448;
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  color: #fafafa;
+}

@@ -76,7 +76,7 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
           Submit
         </button>
       </form>
-      <span>
+      <span className='sign-up-message'>
         Don't have an account yet? Sign up{' '}
         <Link onClick={() => toggleLogInVisibility()} to='/sign-up'>
           here

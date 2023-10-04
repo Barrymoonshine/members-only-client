@@ -9,13 +9,15 @@ const useUserState = () => {
   } else {
     return {
       isLoggedIn: userContext.state.isLoggedIn,
+      userID: userContext.state.userID,
       isMember: userContext.state.isMember,
       isAdmin: userContext.state.isAdmin,
       isLoading: userContext.state.isLoading,
       logInError: userContext.state.logInError,
       signUpError: userContext.state.signUpError,
+      joinUsError: userContext.state.joinUsError,
     };
   }
 };
 
-export default useUserState; 
+export default useUserState;

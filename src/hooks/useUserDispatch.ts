@@ -2,8 +2,9 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { USER_ACTIONS } from '../utils/ACTIONS';
 import { LogInFormTypes } from '../components/LogIn/LogIn';
-import { ResError } from '../types/messageTypes';
+import { ResError, ValidatorError } from '../types/messageTypes';
 import { SignUpFormTypes } from '../pages/SignUp/SignUp';
+import { JoinUsFormTypes } from '../page/JoinUs/JoinUs';
 
 const useUserDispatch = () => {
   const userContext = useContext(UserContext);
@@ -50,6 +51,13 @@ const useUserDispatch = () => {
     });
   };
 
+  const saveUserID = (id: string) => {
+    dispatch({
+      type: USER_ACTIONS.SAVE_USER_ID,
+      payload: { id },
+    });
+  };
+
   const handleLogIn = async (formData: LogInFormTypes) => {
     try {
       removeLogInError();
@@ -65,6 +73,7 @@ const useUserDispatch = () => {
       if (response.ok) {
         data.isAdmin && setAdminStatus();
         data.isMember && setMemberStatus();
+        saveUserID(data._id);
         toggleLogIn();
         toggleLoading();
         return true;
@@ -86,7 +95,7 @@ const useUserDispatch = () => {
     });
   };
 
-  const saveSignUpError = (error: ResError) => {
+  const saveSignUpError = (error: ResError | ValidatorError[]) => {
     dispatch({
       type: USER_ACTIONS.SAVE_SIGN_UP_ERROR,
       payload: { error },
@@ -107,11 +116,12 @@ const useUserDispatch = () => {
       const data = await response.json();
       if (response.ok) {
         data.isAdmin && setAdminStatus();
+        saveUserID(data._id);
         toggleLogIn();
         toggleLoading();
         return true;
       } else {
-        saveLogInError(data);
+        saveSignUpError(data);
         toggleLoading();
         return false;
       }
@@ -122,10 +132,52 @@ const useUserDispatch = () => {
     }
   };
 
+  const removeJoinUsError = () => {
+    dispatch({
+      type: USER_ACTIONS.REMOVE_JOIN_US_ERROR,
+    });
+  };
+
+  const saveMemberError = (error: ResError | ValidatorError[]) => {
+    dispatch({
+      type: USER_ACTIONS.SAVE_JOIN_US_ERROR,
+      payload: { error },
+    });
+  };
+
+  const handleJoinUs = async (formData: JoinUsFormTypes, id: string) => {
+    try {
+      removeJoinUsError();
+      toggleLoading();
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
+        method: 'PATCH',
+        body: JSON.stringify({ ...formData, id }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setMemberStatus();
+        toggleLoading();
+        return true;
+      } else {
+        saveMemberError(data);
+        toggleLoading();
+        return false;
+      }
+    } catch (error) {
+      saveMemberError(error as ResError);
+      toggleLoading();
+      return false;
+    }
+  };
+
   return {
     handleLogIn,
     removeLogInError,
     handleSignUp,
+    handleJoinUs,
   };
 };
 

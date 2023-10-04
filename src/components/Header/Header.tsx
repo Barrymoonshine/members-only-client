@@ -32,18 +32,20 @@ const Header = () => {
         )}
         {isLoggedIn && isAdmin && !isMember && (
           <ul>
-            <li>
-              <NavLink to='/sign-up' style={{ textDecoration: 'none' }}>
-                <h3>Sign Up</h3>
-              </NavLink>
-            </li>
+            <NavLink
+              className='nav-links'
+              to='/join-us'
+              style={{ textDecoration: 'none' }}
+            >
+              Join Us
+            </NavLink>
             <li>Create</li>
             <li>My Account</li>
           </ul>
         )}
         {isLoggedIn && isAdmin && isMember && (
           <ul>
-            <li>Join Us</li>
+            <li>Create</li>
             <li>My Account</li>
           </ul>
         )}

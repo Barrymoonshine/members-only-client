@@ -1,0 +1,33 @@
+.clue-image {
+  padding: 40px 0px 20px 0px;
+  height: 450px;
+  width: 300px;
+}
+
+.riddle-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.riddle-submit-button {
+  margin-top: 10px;
+  padding: 10px;
+
+  background-color: #0ea5e9;
+  border: 2px solid #0ea5e9;
+  border-radius: 10px;
+  color: #fafafa;
+}
+
+.riddle-submit-button:hover {
+  cursor: pointer;
+  background-color: #0d87c0;
+}
+
+.riddle-error {
+  font-size: 14px;
+  color: #ef4444;
+}

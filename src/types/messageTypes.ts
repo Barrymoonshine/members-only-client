@@ -16,8 +16,6 @@ export type ResError =
   | { message: string; code: number }
   | null;
 
-export type AuthError = string;
-
 export type MessageState = {
   messages: Message | null;
   messagesError: ResError;
