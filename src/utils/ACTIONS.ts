@@ -5,6 +5,8 @@ export const USER_ACTIONS = {
   SAVE_LOG_IN_ERROR: 'save-log-in-error',
   REMOVE_LOG_IN_ERROR: 'remove-log-in-error',
   TOGGLE_LOADING: 'toggle-loading-status',
+  SAVE_SIGN_UP_ERROR: 'save-sign-up-error',
+  REMOVE_SIGN_UP_ERROR: 'remove-sign-up-error',
 };
 
 export const MESSAGE_ACTIONS = {

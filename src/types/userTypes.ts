@@ -1,14 +1,13 @@
 import { USER_ACTIONS } from '../utils/ACTIONS';
 import { ResError } from './messageTypes';
 
-export type AuthError = string;
-
 export type UserState = {
   isLoggedIn: boolean;
   isMember: boolean;
   isAdmin: boolean;
   isLoading: boolean;
-  logInError: AuthError | ResError;
+  logInError: ResError;
+  signUpError: ResError;
 };
 
 // User action types
@@ -39,6 +38,17 @@ type ToggleLoadingAction = {
   type: typeof USER_ACTIONS.TOGGLE_LOADING;
 };
 
+type SaveSignUpErrorAction = {
+  type: typeof USER_ACTIONS.SAVE_SIGN_UP_ERROR;
+  payload: {
+    error: ResError;
+  };
+};
+
+type RemoveSignUpErrorAction = {
+  type: typeof USER_ACTIONS.REMOVE_SIGN_UP_ERROR;
+};
+
 // Union type for all possible user actions
 export type UserAction =
   | ToggleLogInAction
@@ -46,4 +56,6 @@ export type UserAction =
   | SetIsMemberAction
   | SaveLogInErrorAction
   | RemoveLogInErrorAction
-  | ToggleLoadingAction;
+  | ToggleLoadingAction
+  | SaveSignUpErrorAction
+  | RemoveSignUpErrorAction;

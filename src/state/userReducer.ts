@@ -7,6 +7,7 @@ export const initialState: UserState = {
   isAdmin: false,
   isLoading: false,
   logInError: null,
+  signUpError: null,
 };
 
 const userReducer = (state: UserState, action: UserAction) => {
@@ -40,6 +41,16 @@ const userReducer = (state: UserState, action: UserAction) => {
       return {
         ...state,
         isLoading: !state.isLoading,
+      };
+    case USER_ACTIONS.SAVE_SIGN_UP_ERROR:
+      return {
+        ...state,
+        signUpError: action.payload.error,
+      };
+    case USER_ACTIONS.REMOVE_SIGN_UP_ERROR:
+      return {
+        ...state,
+        signUpError: null,
       };
     default:
       return state;

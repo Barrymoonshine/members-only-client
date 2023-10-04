@@ -2,6 +2,7 @@ import './LogIn.css';
 import useUserDispatch from '../../hooks/useUserDispatch';
 import useUserState from '../../hooks/useUserState';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 type LogInProps = {
   toggleLogInVisibility: () => void;
@@ -75,6 +76,12 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
           Submit
         </button>
       </form>
+      <span>
+        Don't have an account yet? Sign up{' '}
+        <Link onClick={() => toggleLogInVisibility()} to='/sign-up'>
+          here
+        </Link>
+      </span>
     </div>
   );
 };

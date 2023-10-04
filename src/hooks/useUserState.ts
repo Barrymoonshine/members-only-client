@@ -13,8 +13,9 @@ const useUserState = () => {
       isAdmin: userContext.state.isAdmin,
       isLoading: userContext.state.isLoading,
       logInError: userContext.state.logInError,
+      signUpError: userContext.state.signUpError,
     };
   }
 };
 
-export default useUserState;
+export default useUserState; 
