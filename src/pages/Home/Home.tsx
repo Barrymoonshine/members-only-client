@@ -1,13 +1,13 @@
 import './Home.css';
 import { useEffect } from 'react';
-import useUserDispatch from '../../hooks/useUserDispatch';
-import useUserState from '../../hooks/useUserState';
+import useMessageDispatch from '../../hooks/useMessageDispatch';
+import useMessageState from '../../hooks/useMessageState';
 import MessageCard from '../../components/MessageCard/MessageCard';
-import { Message } from '../../state/reducerTypes';
+import { Message } from '../../types/messageTypes';
 
 const Home = () => {
-  const { getMessages } = useUserDispatch();
-  const { messagesLoading, messages, messagesError } = useUserState();
+  const { getMessages } = useMessageDispatch();
+  const { messagesLoading, messages, messagesError } = useMessageState();
 
   useEffect(() => {
     let isMounted = true;

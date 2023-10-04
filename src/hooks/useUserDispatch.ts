@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import ACTIONS from '../utils/ACTIONS';
+import { USER_ACTIONS } from '../utils/ACTIONS';
 import { LogInFormTypes } from '../components/LogIn/LogIn';
-import { AuthError, ResError, Message } from '../state/reducerTypes';
+import { AuthError } from '../types/userTypes';
+import { ResError } from '../types/messageTypes';
 
 const useUserDispatch = () => {
   const userContext = useContext(UserContext);
@@ -14,37 +15,37 @@ const useUserDispatch = () => {
 
   const toggleLoading = () => {
     dispatch({
-      type: ACTIONS.TOGGLE_LOADING,
+      type: USER_ACTIONS.TOGGLE_LOADING,
     });
   };
 
   const toggleLogIn = () => {
     dispatch({
-      type: ACTIONS.TOGGLE_LOG_IN,
+      type: USER_ACTIONS.TOGGLE_LOG_IN,
     });
   };
 
   const setAdminStatus = () => {
     dispatch({
-      type: ACTIONS.SET_IS_ADMIN,
+      type: USER_ACTIONS.SET_IS_ADMIN,
     });
   };
 
   const setMemberStatus = () => {
     dispatch({
-      type: ACTIONS.SET_IS_MEMBER,
+      type: USER_ACTIONS.SET_IS_MEMBER,
     });
   };
 
   const removeLogInError = () => {
     dispatch({
-      type: ACTIONS.REMOVE_LOG_IN_ERROR,
+      type: USER_ACTIONS.REMOVE_LOG_IN_ERROR,
     });
   };
 
   const saveLogInError = (error: AuthError) => {
     dispatch({
-      type: ACTIONS.SAVE_LOG_IN_ERROR,
+      type: USER_ACTIONS.SAVE_LOG_IN_ERROR,
       payload: { error },
     });
   };
@@ -79,56 +80,8 @@ const useUserDispatch = () => {
     }
   };
 
-  const saveMessages = (messages: Message[]) => {
-    dispatch({
-      type: ACTIONS.SAVE_MESSAGES,
-      payload: { messages },
-    });
-  };
-
-  const removeMessagesError = () => {
-    dispatch({
-      type: ACTIONS.REMOVE_MESSAGES_ERROR,
-    });
-  };
-
-  const saveMessagesError = (error: ResError) => {
-    dispatch({
-      type: ACTIONS.SAVE_MESSAGES_ERROR,
-      payload: { error },
-    });
-  };
-
-  const toggleMessagesLoading = () => {
-    dispatch({
-      type: ACTIONS.TOGGLE_MESSAGES_LOADING,
-    });
-  };
-
-  const getMessages = async () => {
-    try {
-      removeMessagesError();
-      toggleMessagesLoading();
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/message`, {
-        method: 'GET',
-      });
-      const data = await response.json();
-      if (response.ok) {
-        saveMessages(data);
-        return true;
-      } else {
-        saveMessagesError(data);
-      }
-    } catch (error) {
-      saveMessagesError(error as ResError);
-    } finally {
-      toggleMessagesLoading();
-    }
-  };
-
   return {
     handleLogIn,
-    getMessages,
     removeLogInError,
   };
 };

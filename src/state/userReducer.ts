@@ -1,5 +1,5 @@
-import ACTIONS from '../utils/ACTIONS';
-import { UserState, UserAction } from './reducerTypes';
+import { USER_ACTIONS } from '../utils/ACTIONS';
+import { UserState, UserAction } from '../types/userTypes';
 
 export const initialState: UserState = {
   isLoggedIn: false,
@@ -7,62 +7,39 @@ export const initialState: UserState = {
   isAdmin: false,
   isLoading: false,
   logInError: null,
-  messages: null,
-  messagesError: null,
-  messagesLoading: false,
 };
 
 const userReducer = (state: UserState, action: UserAction) => {
   switch (action.type) {
-    case ACTIONS.TOGGLE_LOG_IN:
+    case USER_ACTIONS.TOGGLE_LOG_IN:
       return {
         ...state,
         isLoggedIn: !state.isLoggedIn,
       };
-    case ACTIONS.SET_IS_ADMIN:
+    case USER_ACTIONS.SET_IS_ADMIN:
       return {
         ...state,
         isAdmin: true,
       };
-    case ACTIONS.SET_IS_MEMBER:
+    case USER_ACTIONS.SET_IS_MEMBER:
       return {
         ...state,
         isMember: true,
       };
-    case ACTIONS.SAVE_LOG_IN_ERROR:
+    case USER_ACTIONS.SAVE_LOG_IN_ERROR:
       return {
         ...state,
         logInError: action.payload.error,
       };
-    case ACTIONS.REMOVE_LOG_IN_ERROR:
+    case USER_ACTIONS.REMOVE_LOG_IN_ERROR:
       return {
         ...state,
         logInError: null,
       };
-    case ACTIONS.TOGGLE_LOADING:
+    case USER_ACTIONS.TOGGLE_LOADING:
       return {
         ...state,
         isLoading: !state.isLoading,
-      };
-    case ACTIONS.SAVE_MESSAGES:
-      return {
-        ...state,
-        messages: action.payload.messages,
-      };
-    case ACTIONS.SAVE_MESSAGES_ERROR:
-      return {
-        ...state,
-        messagesError: action.payload.error,
-      };
-    case ACTIONS.REMOVE_MESSAGES_ERROR:
-      return {
-        ...state,
-        messagesError: null,
-      };
-    case ACTIONS.TOGGLE_MESSAGES_LOADING:
-      return {
-        ...state,
-        messagesLoading: !state.messagesLoading,
       };
     default:
       return state;

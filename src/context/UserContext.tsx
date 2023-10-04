@@ -1,6 +1,6 @@
 import { createContext, ReactNode } from 'react';
 import useUser from '../hooks/useUser';
-import { UserState, UserAction } from '../state/reducerTypes';
+import { UserState, UserAction } from '../types/userTypes';
 
 type UserContextValue = {
   state: UserState;
@@ -11,7 +11,7 @@ type UserProviderProps = {
   children: ReactNode;
 };
 
-// Initialise with undefined as not all components have access to the context
+// Initialise with undefined as not all components may have access to the context
 export const UserContext = createContext<UserContextValue | undefined>(
   undefined
 );
