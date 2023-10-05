@@ -6,7 +6,7 @@ Live link: https://members-only-client.vercel.app/
 
 ClubLand is an exclusive club house in which anyone can view posts, but only logged in users can create posts. To see who created the posts users must answer a riddle to qualify for membership status (answer: friend), and all users can sign up for admin permissions to delete posts.
 
-This app was built using React and is the client for the server which was also built as part of this project, and can be found [here](https://github.com/Barrymoonshine/members-only).
+This app was built using TypeScript and React and is the client for the server which was also built as part of this project, and can be found [here](https://github.com/Barrymoonshine/members-only).
 
 Hosted and deployed on Vercel.
 
@@ -19,7 +19,7 @@ Hosted and deployed on Vercel.
 
 ## Key skills employed
 
-- Static typing with TypeScript with global and local state management and global data types specified in dedicated types directory
+- Static type checking with TypeScript with global and local state management and global data types specified in dedicated types directory
 - Local type checking such as prop and form type checking completed on component/page for simplicity
 - Utilised 'union' types where multiple types may be present for each variable or function parameter
 - Packaged up action types into one type export using 'union' types to improve code readability
