@@ -2,10 +2,26 @@ import './MyAccount.css';
 import useUserState from '../../hooks/useUserState';
 import useUserDispatch from '../../hooks/useUserDispatch';
 import { Navigate } from 'react-router-dom';
+import { useState } from 'react';
+
+type AdminError = string | boolean;
 
 const MyAccount = () => {
-  const { isLoggedIn, isAdmin, isMember } = useUserState();
-  const { handleLogOut } = useUserDispatch();
+  const { isLoggedIn, isAdmin, isMember, userID, isLoading, username } =
+    useUserState();
+  const { handleLogOut, reqToggleAdminStatus } = useUserDispatch();
+  const [adminError, setAdminError] = useState<AdminError>(false);
+
+  const handleToggleAdminStatus = async (userID: string, isAdmin: boolean) => {
+    const success = await reqToggleAdminStatus(userID, !isAdmin);
+    if (!success) {
+      setAdminError(
+        'There has been an error with updating your Admin status, please try again '
+      );
+    } else {
+      setAdminError(false);
+    }
+  };
 
   return (
     <>
@@ -13,37 +29,101 @@ const MyAccount = () => {
         <Navigate to='/' />
       ) : (
         <>
-          <h2>My Account</h2>
+          <h2>{username}'s Account</h2>
           <div className='my-account-container'>
             <h4>Your permissions</h4>
-            {!isAdmin && !isMember && (
+            {!isAdmin && !isMember && isLoggedIn && (
               <ul>
                 <li>
                   ✘ You are not an Admin. This means you can't delete posts
                 </li>
                 <li>
-                  ✘ You are not a Member. This means you can't view who posted
-                  and when. To become a Member visit the Join Us page
+                  <button
+                    className='add-admin-button'
+                    disabled={isLoading}
+                    onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                  >
+                    Become an Admin
+                  </button>
+                  {adminError && <li>adminError</li>}
                 </li>
-              </ul>
-            )}
-            {isAdmin && !isMember && (
-              <ul>
-                <li>✓ You are a site Admin!</li>
                 <li>
                   ✘ You are not a Member. This means you can't view who posted
                   and when. To become a Member visit the Join Us page
                 </li>
               </ul>
             )}
-            {isAdmin && isMember && (
+            {!isAdmin && isMember && isLoggedIn && (
               <ul>
-                <li>✓ You are a site Admin</li>
-                <li>✓ You are a Member</li>
-                <li>Congrats on completing ClubLand!</li>
+                <li>
+                  ✘ You are not an Admin. This means you can't delete posts
+                </li>
+                <li>
+                  <button
+                    className='add-admin-button'
+                    disabled={isLoading}
+                    onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                  >
+                    Become an Admin
+                  </button>
+                  {adminError && <li>{adminError}</li>}
+                </li>
+                <li>
+                  ✓ You are a Member. This means you can view who posted and
+                  when
+                </li>
               </ul>
             )}
-            <button onClick={() => handleLogOut()} className='log-out-button'>
+            {isAdmin && !isMember && isLoggedIn && (
+              <ul>
+                <li>
+                  ✓ You are a site Admin. This means you can delete posts!
+                </li>
+                <li>
+                  <button
+                    className='remove-admin-button'
+                    disabled={isLoading}
+                    onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                  >
+                    Remove Admin status
+                  </button>
+                  {adminError && <li>{adminError}</li>}
+                </li>
+                <li>
+                  ✘ You are not a Member. This means you can't view who posted
+                  and when. To become a Member visit the Join Us page
+                </li>
+              </ul>
+            )}
+            {isAdmin && isMember && isLoggedIn && (
+              <>
+                <ul>
+                  <li>
+                    ✓ You are a site Admin. This means you can delete posts!
+                  </li>
+                  <li>
+                    <button
+                      className='remove-admin-button'
+                      disabled={isLoading}
+                      onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                    >
+                      Remove Admin status
+                    </button>
+                    {adminError && <li>{adminError}</li>}
+                  </li>
+                  <li>
+                    ✓ You are a Member. This means you can view who posted and
+                    when
+                  </li>
+                </ul>
+                <p>Congrats on completing ClubLand!</p>
+              </>
+            )}
+            <button
+              disabled={isLoading}
+              onClick={() => handleLogOut()}
+              className='log-out-button'
+            >
               Log Out
             </button>
           </div>

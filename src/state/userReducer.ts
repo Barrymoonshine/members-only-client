@@ -30,10 +30,10 @@ const userReducer = (state: UserState, action: UserAction) => {
         ...state,
         username: action.payload.username,
       };
-    case USER_ACTIONS.SET_IS_ADMIN:
+    case USER_ACTIONS.TOGGLE_IS_ADMIN:
       return {
         ...state,
-        isAdmin: true,
+        isAdmin: !state.isAdmin,
       };
     case USER_ACTIONS.SET_IS_MEMBER:
       return {

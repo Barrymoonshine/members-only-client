@@ -47,7 +47,9 @@ const Create = () => {
           })}
           placeholder='Type your message here'
         />
-        {errors.message && <span>Please provide a message</span>}
+        {errors.message && (
+          <span className='create-error'>Please provide a message</span>
+        )}
         {Array.isArray(createError) &&
           createError.map((error) => (
             <span className='create-error'>{error.msg}</span>

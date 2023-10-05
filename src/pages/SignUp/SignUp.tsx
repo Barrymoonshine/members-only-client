@@ -56,16 +56,12 @@ const SignUp = () => {
               <span className='sign-up-error'>This field is required</span>
             )}
             <label htmlFor='Username'> Username:</label>
-            <input
-              //   onClick={() => removeLogInError()}
-              {...register('username', { required: true })}
-            />
+            <input {...register('username', { required: true })} />
             {errors.username && (
               <span className='sign-up-error'>This field is required</span>
             )}
             <label htmlFor='password'> Password:</label>
             <input
-              //   onClick={() => removeLogInError()}
               type='password'
               {...register('password', {
                 required: true,
@@ -81,11 +77,7 @@ const SignUp = () => {
               </span>
             )}
             <label htmlFor='Admin Status'> Admin:</label>
-            <input
-              type='checkbox'
-              //   onClick={() => removeLogInError()}
-              {...register('isAdmin', { required: true })}
-            />
+            <input type='checkbox' {...register('isAdmin')} />
             {errors.isAdmin && (
               <span className='sign-up-error'>This field is required</span>
             )}

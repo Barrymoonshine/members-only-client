@@ -22,8 +22,8 @@ type SaveUserIAction = {
   type: typeof USER_ACTIONS.SAVE_USER_ID;
 };
 
-type SetIsAdminAction = {
-  type: typeof USER_ACTIONS.SET_IS_ADMIN;
+type ToggleIsAdminAction = {
+  type: typeof USER_ACTIONS.TOGGLE_IS_ADMIN;
 };
 
 type SetIsMemberAction = {
@@ -71,7 +71,7 @@ type RemoveJoinUsErrorAction = {
 export type UserAction =
   | ToggleLogInAction
   | SaveUserIAction
-  | SetIsAdminAction
+  | ToggleIsAdminAction
   | SetIsMemberAction
   | SaveLogInErrorAction
   | RemoveLogInErrorAction

@@ -6,11 +6,13 @@ import LogIn from '../LogIn/LogIn';
 
 const Header = () => {
   const [isLogInVisible, setIsLogInVisible] = useState(false);
-  const { isLoggedIn, isAdmin, isMember } = useUserState();
+  const { isLoggedIn, isMember } = useUserState();
 
   const toggleLogInVisibility = () => {
     setIsLogInVisible((prevState) => !prevState);
   };
+
+  console.log();
 
   return (
     <header>
@@ -30,7 +32,7 @@ const Header = () => {
         {isLogInVisible && (
           <LogIn toggleLogInVisibility={toggleLogInVisibility} />
         )}
-        {isLoggedIn && isAdmin && !isMember && (
+        {isLoggedIn && !isMember && (
           <ul>
             <NavLink
               className='nav-links'
@@ -59,7 +61,7 @@ const Header = () => {
             </li>
           </ul>
         )}
-        {isLoggedIn && isAdmin && isMember && (
+        {isLoggedIn && isMember && (
           <ul>
             <li>
               <NavLink

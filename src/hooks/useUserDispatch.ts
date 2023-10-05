@@ -26,9 +26,9 @@ const useUserDispatch = () => {
     });
   };
 
-  const setAdminStatus = () => {
+  const toggleAdminStatus = () => {
     dispatch({
-      type: USER_ACTIONS.SET_IS_ADMIN,
+      type: USER_ACTIONS.TOGGLE_IS_ADMIN,
     });
   };
 
@@ -78,7 +78,7 @@ const useUserDispatch = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        data.isAdmin && setAdminStatus();
+        data.isAdmin && toggleAdminStatus();
         data.isMember && setMemberStatus();
         saveUserID(data._id);
         saveUsername(data.username);
@@ -123,7 +123,7 @@ const useUserDispatch = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        data.isAdmin && setAdminStatus();
+        data.isAdmin && toggleAdminStatus();
         saveUserID(data._id);
         saveUsername(data.username);
         toggleLogIn();
@@ -188,12 +188,41 @@ const useUserDispatch = () => {
     saveUsername('');
   };
 
+  const reqToggleAdminStatus = async (userID: string, isAdmin: boolean) => {
+    try {
+      toggleLoading();
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/user/admin`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify({ id: userID, isAdmin }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log({ id: userID, isAdmin });
+      if (response.ok) {
+        toggleLoading();
+        toggleAdminStatus();
+        return true;
+      } else {
+        toggleLoading();
+        return false;
+      }
+    } catch {
+      toggleLoading();
+      return false;
+    }
+  };
+
   return {
     handleLogIn,
     removeLogInError,
     handleSignUp,
     handleJoinUs,
     handleLogOut,
+    reqToggleAdminStatus,
   };
 };
 

@@ -2,7 +2,7 @@ export const USER_ACTIONS = {
   TOGGLE_LOG_IN: 'toggle-user-logged-in',
   SAVE_USER_ID: 'save-user-id',
   SAVE_USERNAME: 'save-username',
-  SET_IS_ADMIN: 'set-user-to-admin',
+  TOGGLE_IS_ADMIN: 'toggle-admin-status',
   SET_IS_MEMBER: 'set-user-to-member',
   SAVE_LOG_IN_ERROR: 'save-log-in-error',
   REMOVE_LOG_IN_ERROR: 'remove-log-in-error',
