@@ -18,8 +18,6 @@ const MyAccount = () => {
       setAdminError(
         'There has been an error with updating your Admin status, please try again '
       );
-    } else {
-      setAdminError(false);
     }
   };
 
@@ -45,7 +43,7 @@ const MyAccount = () => {
                   >
                     Become an Admin
                   </button>
-                  {adminError && <li>adminError</li>}
+                  {adminError && <li className='admin-error'>{adminError}</li>}
                 </li>
                 <li>
                   ✘ You are not a Member. This means you can't view who posted
@@ -66,7 +64,7 @@ const MyAccount = () => {
                   >
                     Become an Admin
                   </button>
-                  {adminError && <li>{adminError}</li>}
+                  {adminError && <li className='admin-error'>{adminError}</li>}
                 </li>
                 <li>
                   ✓ You are a Member. This means you can view who posted and
@@ -87,7 +85,7 @@ const MyAccount = () => {
                   >
                     Remove Admin status
                   </button>
-                  {adminError && <li>{adminError}</li>}
+                  {adminError && <li className='admin-error'>{adminError}</li>}
                 </li>
                 <li>
                   ✘ You are not a Member. This means you can't view who posted

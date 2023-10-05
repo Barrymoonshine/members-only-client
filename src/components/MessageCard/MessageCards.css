@@ -26,3 +26,19 @@
 .created-at {
   color: #97999c;
 }
+
+.delete-error {
+  color: #ef4444;
+  font-size: 13px;
+}
+
+.delete-button {
+  border: 1px solid transparent;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.delete-button:hover {
+  border: 1px solid #939396;
+  cursor: pointer;
+}

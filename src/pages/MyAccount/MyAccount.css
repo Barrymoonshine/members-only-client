@@ -55,3 +55,7 @@
   cursor: pointer;
   background-color: #178840;
 }
+
+.admin-error {
+  color: #ef4444;
+}

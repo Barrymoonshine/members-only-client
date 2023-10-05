@@ -35,6 +35,7 @@ const Home = () => {
         messages.map((message: Message) => (
           <MessageCard
             key={message._id}
+            messageId={message._id}
             username={message.username}
             message={message.message}
             createdAt={message.createdAt}

@@ -101,9 +101,32 @@ const useMessageDispatch = () => {
     }
   };
 
+  const reqDeleteMessage = async (messageId: string) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/message/${messageId}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      if (response.ok) {
+        const messages = state.messages.filter(
+          (message: Message) => message._id !== messageId
+        );
+        saveMessages(messages);
+        return true;
+      } else {
+        return false;
+      }
+    } catch {
+      return false;
+    }
+  };
+
   return {
     getMessages,
     handleCreateMessage,
+    reqDeleteMessage,
   };
 };
 
