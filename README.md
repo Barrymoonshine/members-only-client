@@ -1,4 +1,4 @@
-# Blog API client
+# Members Only Client
 
 Live link: https://members-only-client.vercel.app/
 
@@ -21,7 +21,7 @@ Hosted and deployed on Vercel.
 
 - Static typing with TypeScript with global and local state management and global data types specified in dedicated types directory
 - Local type checking such as prop and form type checking completed on component/page for simplicity
-- Utilised union types where multiple types may be present for each variable or function parameter
-- Packaged up action types into one type export using union types to improve code readability
+- Utilised 'union' types where multiple types may be present for each variable or function parameter
+- Packaged up action types into one type export using 'union' types to improve code readability
 - Clarified `payload` types using the `never` keyword and the optional modifier `?` where the `payload` property may not be present
-- Type guarding within a conditional blocks to ensure that the properties required are present prior to access
+- Type guarding within a conditional blocks to ensure that require properties are present prior to access
