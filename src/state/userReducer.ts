@@ -21,15 +21,21 @@ const userReducer = (state: UserState, action: UserAction) => {
         isLoggedIn: !state.isLoggedIn,
       };
     case USER_ACTIONS.SAVE_USER_ID:
-      return {
-        ...state,
-        userID: action.payload.id,
-      };
+      if (action.payload && 'id' in action.payload) {
+        return {
+          ...state,
+          userID: action.payload.id,
+        };
+      }
+      return state;
     case USER_ACTIONS.SAVE_USERNAME:
-      return {
-        ...state,
-        username: action.payload.username,
-      };
+      if (action.payload && 'username' in action.payload) {
+        return {
+          ...state,
+          username: action.payload.username,
+        };
+      }
+      return state;
     case USER_ACTIONS.TOGGLE_IS_ADMIN:
       return {
         ...state,
@@ -41,10 +47,13 @@ const userReducer = (state: UserState, action: UserAction) => {
         isMember: true,
       };
     case USER_ACTIONS.SAVE_LOG_IN_ERROR:
-      return {
-        ...state,
-        logInError: action.payload.error,
-      };
+      if (action.payload && 'error' in action.payload) {
+        return {
+          ...state,
+          logInError: action.payload.error,
+        };
+      }
+      return state;
     case USER_ACTIONS.REMOVE_LOG_IN_ERROR:
       return {
         ...state,
@@ -56,20 +65,26 @@ const userReducer = (state: UserState, action: UserAction) => {
         isLoading: !state.isLoading,
       };
     case USER_ACTIONS.SAVE_SIGN_UP_ERROR:
-      return {
-        ...state,
-        signUpError: action.payload.error,
-      };
+      if (action.payload && 'error' in action.payload) {
+        return {
+          ...state,
+          signUpError: action.payload.error,
+        };
+      }
+      return state;
     case USER_ACTIONS.REMOVE_SIGN_UP_ERROR:
       return {
         ...state,
         signUpError: null,
       };
     case USER_ACTIONS.SAVE_JOIN_US_ERROR:
-      return {
-        ...state,
-        joinUsError: action.payload.error,
-      };
+      if (action.payload && 'error' in action.payload) {
+        return {
+          ...state,
+          joinUsError: action.payload.error,
+        };
+      }
+      return state;
     case USER_ACTIONS.REMOVE_JOIN_US_ERROR:
       return {
         ...state,

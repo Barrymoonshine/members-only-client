@@ -33,6 +33,7 @@ export type MessageState = {
 };
 
 // Message action types
+// Payload never used to confirm a payload will never be sent with certain actions
 type SaveMessagesAction = {
   type: typeof MESSAGE_ACTIONS.SAVE_MESSAGES;
   payload: {
@@ -49,6 +50,7 @@ type SaveMessagesErrorAction = {
 
 type RemoveMessagesErrorAction = {
   type: typeof MESSAGE_ACTIONS.REMOVE_MESSAGES_ERROR;
+  payload: never;
 };
 
 type SaveCreateErrorAction = {
@@ -60,6 +62,7 @@ type SaveCreateErrorAction = {
 
 type RemoveCreateErrorAction = {
   type: typeof MESSAGE_ACTIONS.REMOVE_MESSAGES_ERROR;
+  payload: never;
 };
 
 // Union type for all possible message actions
