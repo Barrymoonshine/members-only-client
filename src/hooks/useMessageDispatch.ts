@@ -48,7 +48,6 @@ const useMessageDispatch = () => {
       const data = await response.json();
       if (response.ok) {
         saveMessages(data);
-        return true;
       } else {
         saveMessagesError(data);
       }
@@ -87,7 +86,6 @@ const useMessageDispatch = () => {
         },
       });
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         saveMessages(data);
         return true;

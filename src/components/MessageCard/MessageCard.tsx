@@ -4,8 +4,8 @@ import useMessageDispatch from '../../hooks/useMessageDispatch';
 import { useState } from 'react';
 
 type MessageCardProps = {
-  // title
   messageId: string;
+  title: string;
   username: string;
   message: string;
   createdAt: string;
@@ -15,6 +15,7 @@ type DeleteError = string | boolean;
 
 const MessageCard = ({
   messageId,
+  title,
   username,
   message,
   createdAt,
@@ -34,7 +35,7 @@ const MessageCard = ({
 
   return (
     <div className='message-card-container'>
-      <span className='title'>Title needed</span>
+      <span className='title'>{title}</span>
       <span className='message'>{message}</span>
       {isMember ? (
         <>

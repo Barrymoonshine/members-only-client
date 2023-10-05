@@ -36,6 +36,7 @@ const Home = () => {
         messages.map((message: Message) => (
           <MessageCard
             key={message._id}
+            title={message.title}
             messageId={message._id}
             username={message.username}
             message={message.message}
@@ -44,7 +45,6 @@ const Home = () => {
         ))}
       {messages && messages.length === 0 && (
         <>
-          {' '}
           <span className='no-messages'>
             There are currently no messages saved.
             <p>Log in or create an account to start posting messages!</p>

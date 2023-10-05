@@ -3,6 +3,7 @@ import { MESSAGE_ACTIONS } from '../utils/ACTIONS';
 export type Message = {
   _id: string;
   username: string;
+  title: string;
   message: string;
   createdAt: string;
   updatedAt: string;
