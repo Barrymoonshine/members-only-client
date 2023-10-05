@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import userReducer, { initialState } from '../state/userReducer';
 
 const useUser = () => {
-  const [state, dispatch] = useReducer(userReducer, initialState);
+  const [state, dispatch] = useReducer<any>(userReducer, initialState);
 
   return {
     state,

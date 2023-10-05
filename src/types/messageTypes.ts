@@ -27,13 +27,14 @@ export type ResError =
 
 export type MessageState = {
   messages: Message[] | null;
-  messagesError: ResError;
+  messagesError: ResError | null;
   messagesLoading: boolean;
   createError: ValidatorError[] | ResError | null;
 };
 
 // Message action types
 // Payload never used to confirm a payload will never be sent with certain actions
+// In addition making payload optional indicated that dispatches are not required to have a payload
 type SaveMessagesAction = {
   type: typeof MESSAGE_ACTIONS.SAVE_MESSAGES;
   payload: {
@@ -50,7 +51,7 @@ type SaveMessagesErrorAction = {
 
 type RemoveMessagesErrorAction = {
   type: typeof MESSAGE_ACTIONS.REMOVE_MESSAGES_ERROR;
-  payload: never;
+  payload?: never;
 };
 
 type SaveCreateErrorAction = {
@@ -60,9 +61,14 @@ type SaveCreateErrorAction = {
   };
 };
 
+type ToggleMessagesLoadingAction = {
+  type: typeof MESSAGE_ACTIONS.TOGGLE_MESSAGES_LOADING;
+  payload?: never;
+};
+
 type RemoveCreateErrorAction = {
   type: typeof MESSAGE_ACTIONS.REMOVE_MESSAGES_ERROR;
-  payload: never;
+  payload?: never;
 };
 
 // Union type for all possible message actions
@@ -71,4 +77,5 @@ export type MessageAction =
   | SaveMessagesErrorAction
   | RemoveMessagesErrorAction
   | SaveCreateErrorAction
+  | ToggleMessagesLoadingAction
   | RemoveCreateErrorAction;
