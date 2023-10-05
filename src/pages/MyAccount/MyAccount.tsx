@@ -9,11 +9,11 @@ type AdminError = string | boolean;
 const MyAccount = () => {
   const { isLoggedIn, isAdmin, isMember, userID, isLoading, username } =
     useUserState();
-  const { handleLogOut, reqToggleAdminStatus } = useUserDispatch();
+  const { handleLogOut, handleToggleAdminStatus } = useUserDispatch();
   const [adminError, setAdminError] = useState<AdminError>(false);
 
-  const handleToggleAdminStatus = async (userID: string, isAdmin: boolean) => {
-    const success = await reqToggleAdminStatus(userID, !isAdmin);
+  const reqToggleAdminStatus = async () => {
+    const success = await handleToggleAdminStatus(userID, !isAdmin);
     if (!success) {
       setAdminError(
         'There has been an error with updating your Admin status, please try again '
@@ -39,7 +39,7 @@ const MyAccount = () => {
                   <button
                     className='add-admin-button'
                     disabled={isLoading}
-                    onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                    onClick={() => reqToggleAdminStatus()}
                   >
                     Become an Admin
                   </button>
@@ -60,7 +60,7 @@ const MyAccount = () => {
                   <button
                     className='add-admin-button'
                     disabled={isLoading}
-                    onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                    onClick={() => reqToggleAdminStatus()}
                   >
                     Become an Admin
                   </button>
@@ -81,7 +81,7 @@ const MyAccount = () => {
                   <button
                     className='remove-admin-button'
                     disabled={isLoading}
-                    onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                    onClick={() => reqToggleAdminStatus()}
                   >
                     Remove Admin status
                   </button>
@@ -103,7 +103,7 @@ const MyAccount = () => {
                     <button
                       className='remove-admin-button'
                       disabled={isLoading}
-                      onClick={() => handleToggleAdminStatus(userID, isAdmin)}
+                      onClick={() => reqToggleAdminStatus()}
                     >
                       Remove Admin status
                     </button>

@@ -101,7 +101,7 @@ const useMessageDispatch = () => {
     }
   };
 
-  const reqDeleteMessage = async (messageId: string) => {
+  const handleDeleteMessage = async (messageId: string) => {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/message/${messageId}`,
@@ -126,7 +126,7 @@ const useMessageDispatch = () => {
   return {
     getMessages,
     handleCreateMessage,
-    reqDeleteMessage,
+    handleDeleteMessage,
   };
 };
 

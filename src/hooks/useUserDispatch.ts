@@ -188,7 +188,7 @@ const useUserDispatch = () => {
     });
   };
 
-  const reqToggleAdminStatus = async (userID: string, isAdmin: boolean) => {
+  const handleToggleAdminStatus = async (userID: string, isAdmin: boolean) => {
     try {
       toggleLoading();
       const response = await fetch(
@@ -221,7 +221,7 @@ const useUserDispatch = () => {
     handleSignUp,
     handleJoinUs,
     handleLogOut,
-    reqToggleAdminStatus,
+    handleToggleAdminStatus,
   };
 };
 

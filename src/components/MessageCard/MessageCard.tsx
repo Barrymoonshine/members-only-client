@@ -20,11 +20,11 @@ const MessageCard = ({
   createdAt,
 }: MessageCardProps) => {
   const { isAdmin, isMember } = useUserState();
-  const { reqDeleteMessage } = useMessageDispatch();
+  const { handleDeleteMessage } = useMessageDispatch();
   const [deleteError, setDeleteError] = useState<DeleteError>(false);
 
-  const handleDeleteMessage = async () => {
-    const success = await reqDeleteMessage(messageId);
+  const reqDeleteMessage = async () => {
+    const success = await handleDeleteMessage(messageId);
     if (!success) {
       setDeleteError(
         'Unfortunately we were unable to delete this message, please try again  '
@@ -46,10 +46,7 @@ const MessageCard = ({
       )}
       {isAdmin && (
         <>
-          <button
-            className='delete-button'
-            onClick={() => handleDeleteMessage()}
-          >
+          <button className='delete-button' onClick={() => reqDeleteMessage()}>
             <img
               src='./images/delete.png'
               width='20px'
