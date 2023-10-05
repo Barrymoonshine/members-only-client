@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# Blog API client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live link: https://members-only-client.vercel.app/
 
-Currently, two official plugins are available:
+## Summary
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ClubLand is an exclusive club house in which anyone can view posts, but only logged in users can create posts. To see who created the posts users must answer a riddle to qualify for membership status (answer: friend), and all users can sign up for admin permissions to delete posts.
 
-## Expanding the ESLint configuration
+This app was built using React and is the client for the server which was also built as part of this project, and can be found [here](https://github.com/Barrymoonshine/members-only).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Hosted and deployed on Vercel.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Create and delete messages
+- Dynamic welcome message
+- Pop up log in form
+- Manage authorisation permissions by answering a riddle, or updating account details on the My Account page
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Key skills employed
+
+- Static typing with TypeScript with global and local state management and global data types specified in dedicated types directory
+- Local type checking such as prop and form type checking completed on component/page for simplicity
+- Utilised union types where multiple types may be present for each variable or function parameter
+- Packaged up action types into one type export using union types to improve code readability
+- Clarified `payload` types using the `never` keyword and the optional modifier `?` where the `payload` property may not be present
+- Type guarding within a conditional blocks to ensure that the properties required are present prior to access
