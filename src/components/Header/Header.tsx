@@ -34,13 +34,15 @@ const Header = () => {
         )}
         {isLoggedIn && !isMember && (
           <ul>
-            <NavLink
-              className='nav-links'
-              to='/join-us'
-              style={{ textDecoration: 'none' }}
-            >
-              Join Us
-            </NavLink>
+            <li>
+              <NavLink
+                className='nav-links'
+                to='/join-us'
+                style={{ textDecoration: 'none' }}
+              >
+                Join Us
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 className='nav-links'

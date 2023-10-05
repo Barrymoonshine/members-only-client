@@ -13,7 +13,8 @@
   gap: 10px;
 }
 
-.username {
+.username,
+.title {
   font-weight: bold;
 }
 
@@ -41,4 +42,16 @@
 .delete-button:hover {
   border: 1px solid #939396;
   cursor: pointer;
+}
+
+.user-details-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member-notice {
+  color: #888c91;
 }

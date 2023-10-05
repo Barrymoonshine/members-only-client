@@ -38,25 +38,32 @@ const MessageCard = ({
       <span className='title'>{title}</span>
       <span className='message'>{message}</span>
       {isMember ? (
-        <>
+        <div className='user-details-container'>
           <span className='username'> By: {username}</span>
           <span className='created-at'>{createdAt.slice(0, 10)}</span>
-        </>
+          {isAdmin && (
+            <>
+              <button
+                className='delete-button'
+                onClick={() => reqDeleteMessage()}
+              >
+                <img
+                  src='./images/delete.png'
+                  width='20px'
+                  height='20px'
+                  alt='Delete icon'
+                />
+              </button>
+              {deleteError && (
+                <span className='delete-error'>{deleteError}</span>
+              )}
+            </>
+          )}
+        </div>
       ) : (
-        <span> Become a member to view who created this post and when :~D</span>
-      )}
-      {isAdmin && (
-        <>
-          <button className='delete-button' onClick={() => reqDeleteMessage()}>
-            <img
-              src='./images/delete.png'
-              width='20px'
-              height='20px'
-              alt='Delete icon'
-            />
-          </button>
-          {deleteError && <span className='delete-error'>{deleteError}</span>}
-        </>
+        <span className='member-notice'>
+          Become a member to view who created this post and when :~D
+        </span>
       )}
     </div>
   );
