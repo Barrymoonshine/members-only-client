@@ -12,6 +12,7 @@ type UserProviderProps = {
 };
 
 // Initialise with undefined as not all components may have access to the context
+// Although due to architecture, all components and pages have access in this app
 export const UserContext = createContext<UserContextValue | undefined>(
   undefined
 );

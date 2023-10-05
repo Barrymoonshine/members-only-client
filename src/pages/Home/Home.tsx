@@ -47,8 +47,8 @@ const Home = () => {
         <>
           <span className='no-messages'>
             There are currently no messages saved.
-            <p>Log in or create an account to start posting messages!</p>
           </span>
+          <p>Log in or create an account to start posting messages!</p>
         </>
       )}
     </>

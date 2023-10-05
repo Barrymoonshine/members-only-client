@@ -4,7 +4,7 @@ import { USER_ACTIONS } from '../utils/ACTIONS';
 import { LogInFormTypes } from '../components/LogIn/LogIn';
 import { ResError, ValidatorError } from '../types/messageTypes';
 import { SignUpFormTypes } from '../pages/SignUp/SignUp';
-import { JoinUsFormTypes } from '../page/JoinUs/JoinUs';
+import { JoinUsFormTypes } from '../pages/JoinUs/JoinUs';
 
 const useUserDispatch = () => {
   const userContext = useContext(UserContext);
