@@ -3,6 +3,10 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import useUserState from '../../hooks/useUserState';
 import useUserDispatch from '../../hooks/useUserDispatch';
 import { Navigate } from 'react-router-dom';
+import { ValidatorError } from '../../types/messageTypes';
+
+const isValidatorError = (error: any): error is ValidatorError =>
+  error && typeof error === 'object' && 'msg' in error;
 
 export type SignUpFormTypes = {
   firstName: string;
@@ -82,11 +86,14 @@ const SignUp = () => {
               <span className='sign-up-error'>This field is required</span>
             )}
             {Array.isArray(signUpError) &&
-              signUpError.map((error) => (
-                <span className='sign-up-error'>{error.msg}</span>
-              ))}
+              signUpError.map((error) => {
+                if (isValidatorError(error)) {
+                  return <span className='sing-up-error'>{error.msg}</span>;
+                }
+                return null;
+              })}
             {!Array.isArray(signUpError) && signUpError && (
-              <span className='sign-up-error'>{signUpError}</span>
+              <span className='sign-up-error'>{signUpError.toString()}</span>
             )}
             <button disabled={isLoading} className='sign-up-submit-button'>
               Submit
