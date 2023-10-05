@@ -5,9 +5,8 @@ import useMessageState from '../../hooks/useMessageState';
 import useUserState from '../../hooks/useUserState';
 import { ValidatorError } from '../../types/messageTypes';
 
-function isValidatorError(error: any): error is ValidatorError {
-  return error && typeof error === 'object' && 'msg' in error;
-}
+const isValidatorError = (error: any): error is ValidatorError =>
+  error && typeof error === 'object' && 'msg' in error;
 
 export type CreateFormTypes = {
   title: string;
