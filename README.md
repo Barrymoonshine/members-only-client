@@ -25,3 +25,4 @@ Hosted and deployed on Vercel.
 - Packaged up action types into one type export using 'union' types to improve code readability
 - Clarified `payload` types using the `never` keyword and the optional modifier `?` where the `payload` property may not be present
 - Type guarding within a conditional blocks to ensure that require properties are present prior to access
+- Error handling with the `as` keyword to explicitly specify the server error types where TypeScript can't infer
