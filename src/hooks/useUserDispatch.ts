@@ -90,8 +90,8 @@ const useUserDispatch = () => {
         toggleLoading();
         return false;
       }
-    } catch (error: ResError) {
-      saveLogInError(error);
+    } catch (error) {
+      saveLogInError(error as ResError);
       toggleLoading();
       return false;
     }
