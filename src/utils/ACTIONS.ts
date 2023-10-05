@@ -11,6 +11,7 @@ export const USER_ACTIONS = {
   REMOVE_SIGN_UP_ERROR: 'remove-sign-up-error',
   SAVE_JOIN_US_ERROR: 'save-join-us-error',
   REMOVE_JOIN_US_ERROR: 'remove-join-us-error',
+  RESET_USER_DATA: 'reset-user-data',
 };
 
 export const MESSAGE_ACTIONS = {

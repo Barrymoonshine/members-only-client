@@ -183,9 +183,9 @@ const useUserDispatch = () => {
   };
 
   const handleLogOut = () => {
-    toggleLogIn();
-    saveUserID('');
-    saveUsername('');
+    dispatch({
+      type: USER_ACTIONS.RESET_USER_DATA,
+    });
   };
 
   const reqToggleAdminStatus = async (userID: string, isAdmin: boolean) => {
@@ -201,7 +201,6 @@ const useUserDispatch = () => {
           },
         }
       );
-      console.log({ id: userID, isAdmin });
       if (response.ok) {
         toggleLoading();
         toggleAdminStatus();

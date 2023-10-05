@@ -65,15 +65,24 @@ const userReducer = (state: UserState, action: UserAction) => {
         ...state,
         signUpError: null,
       };
-    case USER_ACTIONS.SAVE_MEMBER_ERROR:
+    case USER_ACTIONS.SAVE_JOIN_US_ERROR:
       return {
         ...state,
         joinUsError: action.payload.error,
       };
-    case USER_ACTIONS.REMOVE_MEMBER_ERROR:
+    case USER_ACTIONS.REMOVE_JOIN_US_ERROR:
       return {
         ...state,
         joinUsError: null,
+      };
+    case USER_ACTIONS.RESET_USER_DATA:
+      return {
+        ...state,
+        isLoggedIn: false,
+        username: '',
+        userID: '',
+        isMember: false,
+        isAdmin: false,
       };
     default:
       return state;

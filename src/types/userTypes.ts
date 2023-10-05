@@ -67,6 +67,10 @@ type RemoveJoinUsErrorAction = {
   type: typeof USER_ACTIONS.REMOVE_JOIN_US_ERROR;
 };
 
+type ResetUserDataAction = {
+  type: typeof USER_ACTIONS.RESET_USER_DATA;
+};
+
 // Union type for all possible user actions
 export type UserAction =
   | ToggleLogInAction
@@ -79,4 +83,5 @@ export type UserAction =
   | SaveSignUpErrorAction
   | RemoveSignUpErrorAction
   | SaveJoinUsErrorAction
-  | RemoveJoinUsErrorAction;
+  | RemoveJoinUsErrorAction
+  | ResetUserDataAction;
