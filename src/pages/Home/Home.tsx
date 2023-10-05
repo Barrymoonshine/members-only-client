@@ -32,6 +32,7 @@ const Home = () => {
         </span>
       )}
       {messages &&
+        messages.length > 0 &&
         messages.map((message: Message) => (
           <MessageCard
             key={message._id}
@@ -41,6 +42,15 @@ const Home = () => {
             createdAt={message.createdAt}
           />
         ))}
+      {messages && messages.length === 0 && (
+        <>
+          {' '}
+          <span className='no-messages'>
+            There are currently no messages saved.
+            <p>Log in or create an account to start posting messages!</p>
+          </span>
+        </>
+      )}
     </>
   );
 };
