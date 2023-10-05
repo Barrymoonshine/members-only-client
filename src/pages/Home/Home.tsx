@@ -4,10 +4,12 @@ import useMessageDispatch from '../../hooks/useMessageDispatch';
 import useMessageState from '../../hooks/useMessageState';
 import MessageCard from '../../components/MessageCard/MessageCard';
 import { Message } from '../../types/messageTypes';
+import useUserState from '../../hooks/useUserState';
 
 const Home = () => {
   const { getMessages } = useMessageDispatch();
   const { messagesLoading, messages, messagesError } = useMessageState();
+  const { isLoggedIn, username } = useUserState();
 
   useEffect(() => {
     let isMounted = true;
@@ -21,7 +23,7 @@ const Home = () => {
 
   return (
     <>
-      <h2>Club Messages</h2>
+      {isLoggedIn ? <h2>Welcome back {username}</h2> : <h2>Club Messages</h2>}
       {messagesLoading && <span>Page is loading...</span>}
       {messagesError && (
         <span>
