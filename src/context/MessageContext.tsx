@@ -18,12 +18,12 @@ export const MessageContext = createContext<MessageContextValue | undefined>(
 );
 
 export const MessageProvider = ({ children }: MessageProviderProps) => {
-  // Deconstruct useUser and assign with the correct useContext types
+  // Deconstruct useMessage and assign with the correct useContext types
   const { state, dispatch } = useMessage();
-  const userContextValue: MessageContextValue = { state, dispatch };
+  const messageContextValue: MessageContextValue = { state, dispatch };
 
   return (
-    <MessageContext.Provider value={userContextValue}>
+    <MessageContext.Provider value={messageContextValue}>
       {children}
     </MessageContext.Provider>
   );

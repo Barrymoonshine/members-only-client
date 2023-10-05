@@ -27,9 +27,9 @@ export type ResError =
 
 export type MessageState = {
   messages: Message[] | null;
-  messagesError: ResError | null;
+  messagesError: ResError | null | ValidatorError[];
   messagesLoading: boolean;
-  createError: ValidatorError[] | ResError | null;
+  createError: ResError | ValidatorError[] | null;
 };
 
 // Message action types
@@ -57,7 +57,7 @@ type RemoveMessagesErrorAction = {
 type SaveCreateErrorAction = {
   type: typeof MESSAGE_ACTIONS.SAVE_CREATE_ERROR;
   payload: {
-    error: ValidatorError | ResError;
+    error: ValidatorError[] | ResError;
   };
 };
 

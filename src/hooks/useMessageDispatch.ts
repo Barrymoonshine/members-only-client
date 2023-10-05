@@ -8,7 +8,7 @@ const useMessageDispatch = () => {
   const messageContext = useContext(MessageContext);
   // Ensure messageContext is available prior to returning dispatch functions
   if (!messageContext) {
-    throw new Error('useUserDispatch must be used within UserProvider');
+    throw new Error('useMessageDispatch must be used within MessageProvider');
   }
   const { state, dispatch } = messageContext;
 
@@ -64,7 +64,7 @@ const useMessageDispatch = () => {
     });
   };
 
-  const saveCreateError = (error: ValidatorError | ResError) => {
+  const saveCreateError = (error: ResError | ValidatorError[]) => {
     dispatch({
       type: MESSAGE_ACTIONS.REMOVE_CREATE_ERROR,
       payload: { error },

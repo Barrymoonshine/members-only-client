@@ -8,7 +8,7 @@ export const initialState: MessageState = {
   createError: null,
 };
 
-const userReducer = (state: MessageState, action: MessageAction) => {
+const messageReducer = (state: MessageState, action: MessageAction) => {
   switch (action.type) {
     case MESSAGE_ACTIONS.SAVE_MESSAGES:
       if (action.payload && 'messages' in action.payload) {
@@ -54,4 +54,4 @@ const userReducer = (state: MessageState, action: MessageAction) => {
   }
 };
 
-export default userReducer;
+export default messageReducer;

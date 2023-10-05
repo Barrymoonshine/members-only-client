@@ -2,7 +2,7 @@ import { createContext, ReactNode } from 'react';
 import useUser from '../hooks/useUser';
 import { UserState, UserAction } from '../types/userTypes';
 
-type UserContextValue = {
+export type UserContextValue = {
   state: UserState;
   dispatch: (action: UserAction) => void;
 };

@@ -8,13 +8,14 @@ export type UserState = {
   isMember: boolean;
   isAdmin: boolean;
   isLoading: boolean;
-  logInError: ResError;
+  logInError: ResError | ValidatorError[];
   signUpError: ResError | ValidatorError[];
   joinUsError: null | ValidatorError[] | ResError;
 };
 
 // User action types
 // Payload never used to confirm a payload will never be sent with certain actions
+// In addition making payload optional indicated that dispatches are not required to have a payload
 type ToggleLogInAction = {
   type: typeof USER_ACTIONS.TOGGLE_LOG_IN;
   payload?: never;
