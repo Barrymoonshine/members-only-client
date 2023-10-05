@@ -71,7 +71,12 @@ const LogIn = ({ toggleLogInVisibility }: LogInProps) => {
             symbol(!@#$%^&*=+-_)
           </span>
         )}
-        {logInError && <span className='log-in-error'>{logInError}</span>}
+        {logInError && (
+          <span className='log-in-error'>
+            'There has been an error with logging you in, please try again or
+            contact the Site Admin if the issue persists'
+          </span>
+        )}
         <button disabled={isLoading} className='log-in-submit-button'>
           Submit
         </button>

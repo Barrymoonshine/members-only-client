@@ -107,7 +107,7 @@ const useMessageDispatch = () => {
           method: 'DELETE',
         }
       );
-      if (response.ok) {
+      if (response.ok && state.messages) {
         const messages = state.messages.filter(
           (message: Message) => message._id !== messageId
         );

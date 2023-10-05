@@ -18,8 +18,18 @@ type ToggleLogInAction = {
   type: typeof USER_ACTIONS.TOGGLE_LOG_IN;
 };
 
-type SaveUserIAction = {
+type SaveUserIdAction = {
   type: typeof USER_ACTIONS.SAVE_USER_ID;
+  payload: {
+    id: string;
+  };
+};
+
+type SaveUsernameAction = {
+  type: typeof USER_ACTIONS.SAVE_USERNAME;
+  payload: {
+    username: string;
+  };
 };
 
 type ToggleIsAdminAction = {
@@ -74,7 +84,8 @@ type ResetUserDataAction = {
 // Union type for all possible user actions
 export type UserAction =
   | ToggleLogInAction
-  | SaveUserIAction
+  | SaveUserIdAction
+  | SaveUsernameAction
   | ToggleIsAdminAction
   | SetIsMemberAction
   | SaveLogInErrorAction

@@ -26,10 +26,10 @@ export type ResError =
   | null;
 
 export type MessageState = {
-  messages: Message | null;
+  messages: Message[] | null;
   messagesError: ResError;
   messagesLoading: boolean;
-  createError: ValidatorError | ResError | null;
+  createError: ValidatorError[] | ResError | null;
 };
 
 // Message action types

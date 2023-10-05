@@ -3,6 +3,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import useMessageDispatch from '../../hooks/useMessageDispatch';
 import useMessageState from '../../hooks/useMessageState';
 import useUserState from '../../hooks/useUserState';
+import { ValidatorError } from '../../types/messageTypes';
+
+function isValidatorError(error: any): error is ValidatorError {
+  return error && typeof error === 'object' && 'msg' in error;
+}
 
 export type CreateFormTypes = {
   title: string;
@@ -51,9 +56,12 @@ const Create = () => {
           <span className='create-error'>Please provide a message</span>
         )}
         {Array.isArray(createError) &&
-          createError.map((error) => (
-            <span className='create-error'>{error.msg}</span>
-          ))}
+          createError.map((error) => {
+            if (isValidatorError(error)) {
+              return <span className='create-error'>{error.msg}</span>;
+            }
+            return null;
+          })}
         {!Array.isArray(createError) && createError && (
           <span className='create-error'>
             An internal server error occurred when creating your message, please
