@@ -2,6 +2,8 @@
 
 Live link: https://members-only-client.vercel.app/
 
+![Model](https://github.com/Barrymoonshine/members-only-client/blob/main/public/images/club-land-screenshot.png?raw=true)
+
 ## Summary
 
 ClubLand is an exclusive club house in which anyone can view posts, but only logged in users can create posts. To see who created the posts users must answer a riddle to qualify for membership status (answer: friend), and all users can sign up for admin permissions to delete posts.
